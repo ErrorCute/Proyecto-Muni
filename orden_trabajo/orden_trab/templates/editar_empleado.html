@@ -1,0 +1,217 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Editar Empleado{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center mb-3" style="font-size: 1.5rem;">Editar Empleado</h2>
+    <form id="editarEmpleadoForm" method="POST" action="{% url 'editar_empleado' empleado.id %}">
+        {% csrf_token %}
+
+
+        <div class="row g-3">
+            <div class="col-md-6">
+                {{ form.nombre.label_tag }}
+                {{ form.nombre }}
+            </div>
+            <div class="col-md-6">
+                {{ form.apellido_paterno.label_tag }}
+                {{ form.apellido_paterno }}
+            </div>
+        </div>
+
+        <div class="row g-3 mt-2">
+            <div class="col-md-6">
+                {{ form.apellido_materno.label_tag }}
+                {{ form.apellido_materno }}
+            </div>
+            <div class="col-md-6">
+                {{ form.genero.label_tag }}
+                {{ form.genero }}
+            </div>
+        </div>
+
+        <div class="row g-3 mt-2">
+            <div class="col-md-6">
+                {{ form.rut.label_tag }}
+                {{ form.rut }}
+            </div>
+            <div class="col-md-6">
+                {{ form.telefono.label_tag }}
+                {{ form.telefono }}
+            </div>
+        </div>
+
+        <div class="row g-3 mt-2">
+            <div class="col-md-6">
+                {{ form.correo_electronico.label_tag }}
+                {{ form.correo_electronico }}
+            </div>
+            <div class="col-md-6">
+                {{ form.fecha_nacimiento.label_tag }}
+                {{ form.fecha_nacimiento }}
+            </div>
+        </div>
+
+        <div class="row g-3 mt-2">
+            <div class="col-md-6">
+                {{ form.fecha_ingreso.label_tag }}
+                {{ form.fecha_ingreso }}
+            </div>
+            <div class="col-md-6">
+                {{ form.fecha_termino_contrata.label_tag }}
+                {{ form.fecha_termino_contrata }}
+            </div>
+        </div>
+
+        <div class="row g-3 mt-2">
+            <div class="col-md-6">
+                {{ form.anios_servicio.label_tag }}
+                {{ form.anios_servicio }}
+            </div>
+            <div class="col-md-6">
+                {{ form.grado.label_tag }}
+                {{ form.grado }}
+            </div>
+        </div>
+
+        <div class="row g-3 mt-2">
+            <div class="col-md-6">
+                {{ form.condicion.label_tag }}
+                {{ form.condicion }}
+            </div>
+            <div class="col-md-6" id="tipoHonorarioGroup" style="display: none;">
+                {{ form.tipo_honorario.label_tag }}
+                {{ form.tipo_honorario }}
+            </div>
+        </div>
+
+        <div class="row g-3 mt-2">
+
+            <div class="col-md-6" id="itemPresupuestarioGroup" style="display: none;">
+                {{ form.item_presupuestario.label_tag }}
+                {{ form.item_presupuestario }}
+            </div>
+            <div class="col-md-6" id="ctaAdministracionFondosGroup" style="display: none;">
+                {{ form.cta_administracion_fondos.label_tag }}
+                {{ form.cta_administracion_fondos }}
+            </div>
+        </div>
+
+        <div class="row g-3 mt-2">
+            <div class="col-md-6">
+                {{ form.escalon.label_tag }}
+                {{ form.escalon }}
+            </div>
+            <div class="col-md-6">
+                {{ form.cargo.label_tag }}
+                {{ form.cargo }}
+            </div>
+        </div>
+
+        <div class="row g-3 mt-2">
+            <div class="col-md-6">
+                {{ form.direccion_pertenencia.label_tag }}
+                {{ form.direccion_pertenencia }}
+            </div>
+            <div class="col-md-6">
+                {{ form.jefatura.label_tag }}
+                {{ form.jefatura }}
+            </div>
+        </div>
+
+        <div class="row g-3 mt-2">
+            <div class="col-md-6">
+                {{ form.titulo_profesional.label_tag }}
+                {{ form.titulo_profesional }}
+            </div>
+            <div class="col-md-6">
+                {{ form.situacion_actual.label_tag }}
+                {{ form.situacion_actual }}
+            </div>
+        </div>
+
+        <div class="row g-3 mt-2">
+            <div class="col-md-6">
+                {{ form.fecha_termino.label_tag }}
+                {{ form.fecha_termino }}
+            </div>
+            <div class="col-md-6">
+                {{ form.observaciones.label_tag }}
+                {{ form.observaciones }}
+            </div>
+        </div>
+
+        <div class="row g-3 mt-2">
+            <div class="col-md-6">
+                {{ form.direccion.label_tag }}
+                {{ form.direccion }}
+            </div>
+            <div class="col-md-6">
+                {{ form.situacion_discapacidad.label_tag }}
+                {{ form.situacion_discapacidad }}
+            </div>
+        </div>
+
+        <div class="row g-3 mt-2">
+            <div class="col-md-6">
+                {{ form.etnia.label_tag }}
+                {{ form.etnia }}
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end mt-3">
+            <button type="submit" class="btn btn-primary btn-sm">Guardar Cambios</button>
+        </div>
+    </form>
+</div>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const condicionField = document.getElementById('id_condicion');
+        const tipoHonorarioField = document.getElementById('id_tipo_honorario');
+        const tipoHonorarioGroup = document.getElementById('tipoHonorarioGroup');
+        const itemPresupuestarioGroup = document.getElementById('itemPresupuestarioGroup');
+        const ctaAdministracionFondosGroup = document.getElementById('ctaAdministracionFondosGroup');
+
+        function toggleFields() {
+            if (condicionField.value === 'Honorarios') {
+                tipoHonorarioGroup.style.display = 'block';
+            } else {
+                tipoHonorarioGroup.style.display = 'none';
+                itemPresupuestarioGroup.style.display = 'none';
+                ctaAdministracionFondosGroup.style.display = 'none';
+            }
+
+
+            if (tipoHonorarioField) {
+                if (tipoHonorarioField.value === 'Honorario Municipal') {
+                    itemPresupuestarioGroup.style.display = 'block';
+                    ctaAdministracionFondosGroup.style.display = 'none';
+                } else if (tipoHonorarioField.value === 'Mixto') {
+                    itemPresupuestarioGroup.style.display = 'block';
+                    ctaAdministracionFondosGroup.style.display = 'block';
+                } else if (tipoHonorarioField.value === 'Fondos de Terceros') {
+                    itemPresupuestarioGroup.style.display = 'none';
+                    ctaAdministracionFondosGroup.style.display = 'block';
+                } else {
+                    itemPresupuestarioGroup.style.display = 'none';
+                    ctaAdministracionFondosGroup.style.display = 'none';
+                }
+            }
+        }
+
+
+        toggleFields();
+
+
+        condicionField.addEventListener('change', toggleFields);
+        if (tipoHonorarioField) {
+            tipoHonorarioField.addEventListener('change', toggleFields);
+        }
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Empleados</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'empleados/css/styles.css' %}">
+</head>
+<body>
+    <h1>Lista de Empleados</h1>
+    <a href="{% url 'agregar_empleado' %}">Agregar Nuevo Empleado</a>
+    <ul>
+        {% for empleado in empleados %}
+            <li>{{ empleado.nombre }} {{ empleado.apellido_paterno }} {{ empleado.apellido_materno }} - {{ empleado.cargo }}</li>
+        {% endfor %}
+    </ul>
+    <script src="{% static 'empleados/js/scripts.js' %}"></script>
+</body>
+</html>
+    

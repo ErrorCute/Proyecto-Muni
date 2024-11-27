@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5 text-center">
+    <h1>Bienvenido al Panel de Administración</h1>
+    <div class="row mt-4">
+        <div class="col-md-6 mb-4">
+            <a href="{% url 'lista_empleados' %}" class="d-block p-4 text-white text-center rounded-3 shadow" style="background: linear-gradient(to right, #007bff, #ff0000); text-decoration: none; height: 200px;">
+                <h3>Empleados</h3>
+                <p>Gestionar empleados</p>
+            </a>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <a href="{% url 'reporte_empleados' %}" class="d-block p-4 text-white text-center rounded-3 shadow" style="background: linear-gradient(to right, #ff0000, #007bff); text-decoration: none; height: 200px;">
+                <h3>Reportes</h3>
+                <p>Ver reportes</p>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

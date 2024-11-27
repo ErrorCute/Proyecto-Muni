@@ -1,0 +1,73 @@
+/* Navbar con fondo     azul y degradado rojo */
+body {
+    background-image: url('/static/css/img/fondo2.jpg'); /* Asegúrate de que la ruta sea correcta */
+}
+.navbar {
+    background: linear-gradient(to right, #007bff, #ff0000);
+    color: white;
+    padding: 1rem 1rem;  /* Ajusta el padding */
+    height: 80px;        /* Ajusta la altura si es necesario */
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link {
+    color: white !important; /* Asegura que el texto sea blanco */
+}
+
+.navbar .nav-link:hover {
+    color: #ffeb3b !important; /* Cambio de color cuando se pasa el mouse */
+}
+
+.navbar-toggler-icon {
+    background-color: white; /* Íconos de toggler en blanco */
+}
+
+
+.container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+h1 {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #343a40;
+}
+.table-container {
+    overflow-x: auto;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+th, td {
+    border: 1px solid #dee2e6;
+    padding: 12px;
+    text-align: left;
+}
+th {
+    background-color: #f1f3f5;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+td {
+    font-size: 0.875rem;
+}
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+.btn-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.btn {
+    font-size: 0.875rem;
+    padding: 6px 12px;
+}
+.btn-primary {
+    font-size: 1rem;
+}

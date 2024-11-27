@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Agregar Empleado{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Agregar Empleado</h1>
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            {{ form.nombre.label_tag }}
+            {{ form.nombre }}
+        </div>
+        <div class="form-group">
+            {{ form.apellido_paterno.label_tag }}
+            {{ form.apellido_paterno }}
+        </div>
+        <div class="form-group">
+            {{ form.apellido_materno.label_tag }}
+            {{ form.apellido_materno }}
+        </div>
+        <div class="form-group">
+            {{ form.genero.label_tag }}
+            {{ form.genero }}
+        </div>
+        <div class="form-group">
+            {{ form.rut.label_tag }}
+            {{ form.rut }}
+        </div>
+        <div class="form-group">
+            {{ form.fecha_nacimiento.label_tag }}
+            {{ form.fecha_nacimiento }}
+        </div>
+        <div class="form-group">
+            {{ form.fecha_ingreso.label_tag }}
+            {{ form.fecha_ingreso }}
+        </div>
+        <div class="form-group">
+            {{ form.fecha_termino_contrata.label_tag }}
+            {{ form.fecha_termino_contrata }}
+        </div>
+        <div class="form-group">
+            {{ form.anios_servicio.label_tag }}
+            {{ form.anios_servicio }}
+        </div>
+        <div class="form-group">
+            {{ form.grado.label_tag }}
+            {{ form.grado }}
+        </div>
+        <div class="form-group">
+            {{ form.condicion.label_tag }}
+            {{ form.condicion }}
+        </div>
+
+        <div class="form-group" id="tipo_honorario_field" style="display: none;">
+            {{ form.tipo_honorario.label_tag }}
+            {{ form.tipo_honorario }}
+        </div>
+
+        <div class="form-group" id="item_presupuestario_field" style="display: none;">
+            <label for="id_item_presupuestario">Item Presupuestario</label>
+            <input type="text" id="id_item_presupuestario" name="item_presupuestario" class="form-control">
+        </div>
+
+        <div class="form-group" id="cta_administracion_fondos_field" style="display: none;">
+            <label for="id_cta_administracion_fondos">Cuenta Administración de Fondos</label>
+            <input type="text" id="id_cta_administracion_fondos" name="cta_administracion_fondos" class="form-control">
+        </div>
+
+        <div class="form-group">
+            {{ form.situacion_discapacidad.label_tag }}
+            {{ form.situacion_discapacidad }}
+        </div>
+        <div class="form-group">
+            {{ form.etnia.label_tag }}
+            {{ form.etnia }}
+        </div>
+
+        <div class="form-group">
+            {{ form.escalon.label_tag }}
+            {{ form.escalon }}
+        </div>
+        <div class="form-group">
+            {{ form.cargo.label_tag }}
+            {{ form.cargo }}
+        </div>
+        <div class="form-group">
+            {{ form.direccion_pertenencia.label_tag }}
+            {{ form.direccion_pertenencia }}
+        </div>
+        <div class="form-group">
+            {{ form.titulo_profesional.label_tag }}
+            {{ form.titulo_profesional }}
+        </div>
+        <div class="form-group">
+            {{ form.situacion_actual.label_tag }}
+            {{ form.situacion_actual }}
+        </div>
+        <div class="form-group">
+            {{ form.fecha_termino.label_tag }}
+            {{ form.fecha_termino }}
+        </div>
+        <div class="form-group">
+            {{ form.observaciones.label_tag }}
+            {{ form.observaciones }}
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+
+    <a href="{% url 'lista_empleados' %}" class="btn btn-secondary">Volver a la lista</a>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const condicionSelect = document.querySelector('[name="condicion"]');
+        const tipoHonorarioSelect = document.querySelector('[name="tipo_honorario"]');
+        const tipoHonorarioField = document.getElementById('tipo_honorario_field');
+        const itemPresupuestarioField = document.getElementById('item_presupuestario_field');
+        const ctaAdminFondosField = document.getElementById('cta_administracion_fondos_field');
+
+        const toggleFieldsByCondicion = () => {
+            if (condicionSelect.value === 'Honorarios') {
+                tipoHonorarioField.style.display = 'block';
+            } else {
+                tipoHonorarioField.style.display = 'none';
+                itemPresupuestarioField.style.display = 'none';
+                ctaAdminFondosField.style.display = 'none';
+            }
+        };
+
+        const toggleFieldsByTipoHonorario = () => {
+            const value = tipoHonorarioSelect.value;
+            itemPresupuestarioField.style.display = value === 'Honorario Municipal' || value === 'Mixto' ? 'block' : 'none';
+            ctaAdminFondosField.style.display = value === 'Mixto' || value === 'Fondos de Terceros' ? 'block' : 'none';
+        };
+
+        toggleFieldsByCondicion();
+        toggleFieldsByTipoHonorario();
+
+        condicionSelect.addEventListener('change', () => {
+            toggleFieldsByCondicion();
+            toggleFieldsByTipoHonorario();
+        });
+
+        tipoHonorarioSelect.addEventListener('change', toggleFieldsByTipoHonorario);
+    });
+</script>
+{% endblock %}
