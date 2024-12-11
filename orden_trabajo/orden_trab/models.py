@@ -11,7 +11,7 @@ class Empleado(models.Model):
         ('Contrata', 'Contrata'),
         ('Planta', 'Planta'),
         ('Honorarios', 'Honorarios'),
-        ('Codigo del Trabajo', 'Codigo del Trabajo'),
+        ('Codigo del Trabajo', 'Código del Trabajo'),
     ]
     
     SITUACION_CHOICES = [ 
@@ -40,23 +40,23 @@ class Empleado(models.Model):
     ]
 
     DISCAPACIDAD_CHOICES = [
-
-        ('Si', 'Si'),
-        ('No','No'),
+        ('Si', 'Sí'),
+        ('No', 'No'),
     ]
+    
     nombre = models.CharField(max_length=100)
     apellido_paterno = models.CharField(max_length=100)
     apellido_materno = models.CharField(max_length=100)
     genero = models.CharField(max_length=1, choices=GENERO_CHOICES)
-    rut = models.CharField(max_length=12, unique=True)  # Format: 20.928.257-7
+    rut = models.CharField(max_length=12, unique=True)  # Formato: 20.928.257-7
     telefono = models.CharField(max_length=15, null=True, blank=True)  # Ejemplo: +56912345678
     correo_electronico = models.EmailField(max_length=255, null=True, blank=True)
 
-    fecha_nacimiento = models.DateField()  # Format: YYYY-MM-DD
+    fecha_nacimiento = models.DateField()  # Formato: YYYY-MM-DD
     fecha_ingreso = models.DateField()
     fecha_termino_contrata = models.DateField(null=True, blank=True)
-    anios_servicio = models.PositiveIntegerField()
-    grado = models.PositiveIntegerField()
+    anios_servicio = models.CharField(default=0, max_length=1000)
+    grado = models.PositiveIntegerField(default=0)
     condicion = models.CharField(max_length=20, choices=CONDICION_CHOICES)
     tipo_honorario = models.CharField(max_length=20, choices=TIPO_HONORARIO_CHOICES, null=True, blank=True)
 
@@ -77,7 +77,6 @@ class Empleado(models.Model):
     direccion = models.CharField(max_length=255, null=True, blank=True)
     situacion_discapacidad = models.CharField(max_length=100, choices=DISCAPACIDAD_CHOICES, null=True, blank=True)
     etnia = models.CharField(max_length=100, choices=ETNIA_CHOICES, null=True, blank=True)
-
 
     def __str__(self):
         return f'{self.nombre} {self.apellido_paterno} {self.apellido_materno}'

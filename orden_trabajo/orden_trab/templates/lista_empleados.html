@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
-{% load static %}
 
-{% block title %}Lista Empleados{% endblock %}
+{% block title %}Lista de Empleados{% endblock %}
 
 {% block content %}
 <div class="container mt-5">
@@ -86,8 +85,7 @@
                         <td>{{ empleado.etnia }}</td>
                         <td>
                             <a href="{% url 'editar_empleado' empleado.id %}" class="btn btn-sm btn-warning">Editar</a>
-                            <a href="{% url 'eliminar_empleado' empleado.id %}" class="btn btn-sm btn-danger" 
-                               onclick="return confirm('¿Estás seguro de eliminar este empleado?')">Eliminar</a>
+                            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal" data-id="{{ empleado.id }}">Eliminar</button>
                         </td>
                     </tr>
                 {% empty %}
@@ -105,16 +103,36 @@
     </div>
 </div>
 
+<!-- Modal de confirmación -->
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmModalLabel">Confirmar Eliminación</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¿Estás seguro de que deseas eliminar a este empleado? Esta acción no se puede deshacer.
+      </div>
+      <div class="modal-footer">
+        <form id="deleteForm" method="POST" action="">
+            {% csrf_token %}
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const alertMessages = document.querySelectorAll('.message');
-        
-        alertMessages.forEach(function(alert) {
-            setTimeout(function() {
-                alert.classList.add('fade');
-                alert.classList.remove('show');
-            }, 5000);
-        });
+    // Modal de confirmación - Cambiar la URL del formulario al hacer clic en el botón Eliminar
+    const modal = document.getElementById('confirmModal');
+    modal.addEventListener('show.bs.modal', function (event) {
+        const button = event.relatedTarget;
+        const employeeId = button.getAttribute('data-id');
+        const deleteForm = document.getElementById('deleteForm');
+        deleteForm.action = "/orden_trab/eliminar_empleado/" + employeeId + "/";  // Establece la URL de eliminación
     });
 </script>
 

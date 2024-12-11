@@ -10,5 +10,6 @@ urlpatterns = [
     path('eliminar/<int:empleado_id>/', views.eliminar_empleado, name='eliminar_empleado'),
     path('reporte_empleados/', views.generar_reporte_empleados, name='reporte_empleados'),
     path('exportar_reporte_empleados/', views.exportar_reporte_empleados, name='exportar_reporte_empleados'),
+    path('eliminar_empleado/<int:id>/', views.eliminar_empleado, name='eliminar_empleado')
 ]
 

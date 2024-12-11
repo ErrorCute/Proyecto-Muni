@@ -4,162 +4,354 @@
 {% block title %}Editar Empleado{% endblock %}
 
 {% block content %}
+
 <div class="container mt-4">
     <h2 class="text-center mb-3" style="font-size: 1.5rem;">Editar Empleado</h2>
     <form id="editarEmpleadoForm" method="POST" action="{% url 'editar_empleado' empleado.id %}">
+        
         {% csrf_token %}
-
-
+        <!-- Campos Personales -->
         <div class="row g-3">
             <div class="col-md-6">
                 {{ form.nombre.label_tag }}
                 {{ form.nombre }}
+                {% if form.nombre.errors %}
+                    <div class="invalid-feedback d-block">
+                        {% for error in form.nombre.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
             <div class="col-md-6">
                 {{ form.apellido_paterno.label_tag }}
                 {{ form.apellido_paterno }}
+                {% if form.apellido_paterno.errors %}
+                    <div class="invalid-feedback d-block">
+                        {% for error in form.apellido_paterno.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
         </div>
-
+        
         <div class="row g-3 mt-2">
             <div class="col-md-6">
                 {{ form.apellido_materno.label_tag }}
                 {{ form.apellido_materno }}
+                {% if form.apellido_materno.errors %}
+                    <div class="invalid-feedback d-block">
+                        {% for error in form.apellido_materno.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
             <div class="col-md-6">
                 {{ form.genero.label_tag }}
                 {{ form.genero }}
+                {% if form.genero.errors %}
+                    <div class="invalid-feedback d-block">
+                        {% for error in form.genero.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
         </div>
-
+        
         <div class="row g-3 mt-2">
             <div class="col-md-6">
                 {{ form.rut.label_tag }}
                 {{ form.rut }}
+                {% if form.rut.errors %}
+                    <div class="invalid-feedback d-block">
+                        {% for error in form.rut.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
             <div class="col-md-6">
                 {{ form.telefono.label_tag }}
                 {{ form.telefono }}
+                {% if form.telefono.errors %}
+                    <div class="invalid-feedback d-block">
+                        {% for error in form.telefono.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
         </div>
-
+        
         <div class="row g-3 mt-2">
             <div class="col-md-6">
                 {{ form.correo_electronico.label_tag }}
                 {{ form.correo_electronico }}
+                {% if form.correo_electronico.errors %}
+                    <div class="invalid-feedback d-block">
+                        {% for error in form.correo_electronico.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
             <div class="col-md-6">
                 {{ form.fecha_nacimiento.label_tag }}
                 {{ form.fecha_nacimiento }}
+                {% if form.fecha_nacimiento.errors %}
+                    <div class="invalid-feedback d-block">
+                        {% for error in form.fecha_nacimiento.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
         </div>
-
+        
         <div class="row g-3 mt-2">
             <div class="col-md-6">
-                {{ form.fecha_ingreso.label_tag }}
-                {{ form.fecha_ingreso }}
+                {{ form.fecha_nacimiento.label_tag }}
+                {{ form.fecha_nacimiento }}
+                {% if form.fecha_nacimiento.errors %}
+                    <div class="invalid-feedback d-block">
+                        {% for error in form.fecha_nacimiento.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
             <div class="col-md-6">
                 {{ form.fecha_termino_contrata.label_tag }}
                 {{ form.fecha_termino_contrata }}
+                {% if form.fecha_termino_contrata.errors %}
+                    <div class="invalid-feedback d-block">
+                        {% for error in form.fecha_termino_contrata.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
         </div>
-
+        
+        <!-- Campos de trabajo -->
         <div class="row g-3 mt-2">
             <div class="col-md-6">
                 {{ form.anios_servicio.label_tag }}
                 {{ form.anios_servicio }}
+                {% if form.anios_servicio.errors %}
+                    <div class="invalid-feedback d-block">
+                        {% for error in form.anios_servicio.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
             <div class="col-md-6">
                 {{ form.grado.label_tag }}
                 {{ form.grado }}
+                {% if form.grado.errors %}
+                    <div class="invalid-feedback d-block">
+                        {% for error in form.grado.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
         </div>
-
+        
         <div class="row g-3 mt-2">
             <div class="col-md-6">
                 {{ form.condicion.label_tag }}
                 {{ form.condicion }}
+                {% if form.condicion.errors %}
+                    <div class="invalid-feedback d-block">
+                        {% for error in form.condicion.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
             <div class="col-md-6" id="tipoHonorarioGroup" style="display: none;">
                 {{ form.tipo_honorario.label_tag }}
                 {{ form.tipo_honorario }}
+                {% if form.tipo_honorario.errors %}
+                    <div class="invalid-feedback d-block">
+                        {% for error in form.tipo_honorario.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
         </div>
-
+        
         <div class="row g-3 mt-2">
-
             <div class="col-md-6" id="itemPresupuestarioGroup" style="display: none;">
                 {{ form.item_presupuestario.label_tag }}
                 {{ form.item_presupuestario }}
+                {% if form.item_presupuestario.errors %}
+                    <div class="invalid-feedback d-block">
+                        {% for error in form.item_presupuestario.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
             <div class="col-md-6" id="ctaAdministracionFondosGroup" style="display: none;">
                 {{ form.cta_administracion_fondos.label_tag }}
                 {{ form.cta_administracion_fondos }}
+                {% if form.cta_administracion_fondos.errors %}
+                    <div class="invalid-feedback d-block">
+                        {% for error in form.cta_administracion_fondos.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
         </div>
-
+        
+        <!-- Otros campos -->
         <div class="row g-3 mt-2">
             <div class="col-md-6">
                 {{ form.escalon.label_tag }}
                 {{ form.escalon }}
+                {% if form.escalon.errors %}
+                    <div class="invalid-feedback d-block">
+                        {% for error in form.escalon.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
             <div class="col-md-6">
                 {{ form.cargo.label_tag }}
                 {{ form.cargo }}
+                {% if form.cargo.errors %}
+                    <div class="invalid-feedback d-block">
+                        {% for error in form.cargo.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
         </div>
-
+        
         <div class="row g-3 mt-2">
             <div class="col-md-6">
                 {{ form.direccion_pertenencia.label_tag }}
                 {{ form.direccion_pertenencia }}
+                {% if form.direccion_pertenencia.errors %}
+                    <div class="invalid-feedback d-block">
+                        {% for error in form.direccion_pertenencia.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
             <div class="col-md-6">
                 {{ form.jefatura.label_tag }}
                 {{ form.jefatura }}
+                {% if form.jefatura.errors %}
+                    <div class="invalid-feedback d-block">
+                        {% for error in form.jefatura.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
         </div>
-
+        
         <div class="row g-3 mt-2">
             <div class="col-md-6">
                 {{ form.titulo_profesional.label_tag }}
                 {{ form.titulo_profesional }}
+                {% if form.titulo_profesional.errors %}
+                    <div class="invalid-feedback d-block">
+                        {% for error in form.titulo_profesional.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
             <div class="col-md-6">
                 {{ form.situacion_actual.label_tag }}
                 {{ form.situacion_actual }}
+                {% if form.situacion_actual.errors %}
+                    <div class="invalid-feedback d-block">
+                        {% for error in form.situacion_actual.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
         </div>
-
+        
         <div class="row g-3 mt-2">
             <div class="col-md-6">
                 {{ form.fecha_termino.label_tag }}
                 {{ form.fecha_termino }}
+                {% if form.fecha_termino.errors %}
+                    <div class="invalid-feedback d-block">
+                        {% for error in form.fecha_termino.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
             <div class="col-md-6">
                 {{ form.observaciones.label_tag }}
                 {{ form.observaciones }}
+                {% if form.observaciones.errors %}
+                    <div class="invalid-feedback d-block">
+                        {% for error in form.observaciones.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
         </div>
-
+        
         <div class="row g-3 mt-2">
             <div class="col-md-6">
                 {{ form.direccion.label_tag }}
                 {{ form.direccion }}
+                {% if form.direccion.errors %}
+                    <div class="invalid-feedback d-block">
+                        {% for error in form.direccion.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
             <div class="col-md-6">
                 {{ form.situacion_discapacidad.label_tag }}
                 {{ form.situacion_discapacidad }}
+                {% if form.situacion_discapacidad.errors %}
+                    <div class="invalid-feedback d-block">
+                        {% for error in form.situacion_discapacidad.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
         </div>
-
+        
         <div class="row g-3 mt-2">
             <div class="col-md-6">
                 {{ form.etnia.label_tag }}
                 {{ form.etnia }}
+                {% if form.etnia.errors %}
+                    <div class="invalid-feedback d-block">
+                        {% for error in form.etnia.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
         </div>
+        
 
         <div class="d-flex justify-content-end mt-3">
             <button type="submit" class="btn btn-primary btn-sm">Guardar Cambios</button>
@@ -169,6 +361,13 @@
 
 <script>
 
+        $(document).ready(function() {
+                    $('.datepicker').datepicker({
+                        format: 'dd/mm/yyyy',
+                        language: 'es', // Establece el idioma a español
+                        autoclose: true
+                    });
+                });
     document.addEventListener('DOMContentLoaded', function () {
         const condicionField = document.getElementById('id_condicion');
         const tipoHonorarioField = document.getElementById('id_tipo_honorario');
@@ -184,7 +383,6 @@
                 itemPresupuestarioGroup.style.display = 'none';
                 ctaAdministracionFondosGroup.style.display = 'none';
             }
-
 
             if (tipoHonorarioField) {
                 if (tipoHonorarioField.value === 'Honorario Municipal') {
@@ -203,9 +401,7 @@
             }
         }
 
-
         toggleFields();
-
 
         condicionField.addEventListener('change', toggleFields);
         if (tipoHonorarioField) {

@@ -1,11 +1,10 @@
-     
 {% extends 'base.html' %}
 {% load static %}
 
 {% block title %}Reporte Empleados{% endblock %}
 
 {% block content %}
-    
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -27,19 +26,28 @@
                         <th>Apellido Materno</th>
                         <th>Género</th>
                         <th>RUT</th>
+                        <th>Teléfono</th>
+                        <th>Correo Electrónico</th>
                         <th>Fecha de Nacimiento</th>
                         <th>Fecha de Ingreso</th>
                         <th>Fecha de Término de Contrato</th>
                         <th>Años de Servicio</th>
                         <th>Grado</th>
                         <th>Condición</th>
+                        <th>Tipo Honorario</th>
+                        <th>Item Presupuestario</th>
+                        <th>Cuenta Administración de Fondos</th>
                         <th>Escalón</th>
                         <th>Cargo</th>
                         <th>Dirección de Pertenencia</th>
+                        <th>Jefatura</th>
                         <th>Título Profesional</th>
                         <th>Situación Actual</th>
                         <th>Fecha de Término</th>
                         <th>Observaciones</th>
+                        <th>Dirección</th>
+                        <th>Situación de Discapacidad</th>
+                        <th>Etnia</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,23 +58,32 @@
                             <td>{{ empleado.apellido_materno }}</td>
                             <td>{{ empleado.get_genero_display }}</td>
                             <td>{{ empleado.rut }}</td>
-                            <td>{{ empleado.fecha_nacimiento }}</td>
-                            <td>{{ empleado.fecha_ingreso }}</td>
-                            <td>{{ empleado.fecha_termino_contrata }}</td>
+                            <td>{{ empleado.telefono }}</td>
+                            <td>{{ empleado.correo_electronico }}</td>
+                            <td>{{ empleado.fecha_nacimiento|date:"d/m/Y" }}</td>
+                            <td>{{ empleado.fecha_ingreso|date:"d/m/Y" }}</td>
+                            <td>{{ empleado.fecha_termino_contrata|date:"d/m/Y" }}</td>
                             <td>{{ empleado.anios_servicio }}</td>
                             <td>{{ empleado.grado }}</td>
                             <td>{{ empleado.get_condicion_display }}</td>
+                            <td>{{ empleado.tipo_honorario }}</td>
+                            <td>{{ empleado.item_presupuestario }}</td>
+                            <td>{{ empleado.cta_administracion_fondos }}</td>
                             <td>{{ empleado.escalon }}</td>
                             <td>{{ empleado.cargo }}</td>
                             <td>{{ empleado.direccion_pertenencia }}</td>
+                            <td>{{ empleado.jefatura }}</td>
                             <td>{{ empleado.titulo_profesional }}</td>
                             <td>{{ empleado.get_situacion_actual_display }}</td>
-                            <td>{{ empleado.fecha_termino }}</td>
+                            <td>{{ empleado.fecha_termino|date:"d/m/Y" }}</td>
                             <td>{{ empleado.observaciones }}</td>
+                            <td>{{ empleado.direccion }}</td>
+                            <td>{{ empleado.situacion_discapacidad }}</td>
+                            <td>{{ empleado.etnia }}</td>
                         </tr>
                     {% empty %}
                         <tr>
-                            <td colspan="18" class="text-center">No hay empleados registrados.</td>
+                            <td colspan="28" class="text-center">No hay empleados registrados.</td>
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -134,4 +151,5 @@
     </script>
 </body>
 </html>
-    {% endblock %}
+
+{% endblock %}

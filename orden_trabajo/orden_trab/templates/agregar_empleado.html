@@ -8,105 +8,138 @@
     <h1>Agregar Empleado</h1>
     <form method="post">
         {% csrf_token %}
+
+        {% if messages %}
+        <div class="alert-container">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show message" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
         
+        <!-- Campos Personales -->
         <div class="form-group">
-            {{ form.nombre.label_tag }}
+            <label for="{{ form.nombre.id_for_label }}">Nombre(s)</label>
             {{ form.nombre }}
         </div>
         <div class="form-group">
-            {{ form.apellido_paterno.label_tag }}
+            <label for="{{ form.apellido_paterno.id_for_label }}">Apellido Paterno</label>
             {{ form.apellido_paterno }}
         </div>
         <div class="form-group">
-            {{ form.apellido_materno.label_tag }}
+            <label for="{{ form.apellido_materno.id_for_label }}">Apellido Materno</label>
             {{ form.apellido_materno }}
         </div>
         <div class="form-group">
-            {{ form.genero.label_tag }}
+            <label for="{{ form.genero.id_for_label }}">Género</label>
             {{ form.genero }}
         </div>
         <div class="form-group">
-            {{ form.rut.label_tag }}
+            <label for="{{ form.rut.id_for_label }}">RUT</label>
             {{ form.rut }}
         </div>
         <div class="form-group">
-            {{ form.fecha_nacimiento.label_tag }}
+            <label for="{{ form.telefono.id_for_label }}">Teléfono</label>
+            {{ form.telefono }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.correo_electronico.id_for_label }}">Correo Electrónico</label>
+            {{ form.correo_electronico }}
+        </div>
+
+        <!-- Fechas -->
+        <div class="form-group">
+            <label for="{{ form.fecha_nacimiento.id_for_label }}">Fecha de Nacimiento</label>
             {{ form.fecha_nacimiento }}
         </div>
         <div class="form-group">
-            {{ form.fecha_ingreso.label_tag }}
+            <label for="{{ form.fecha_ingreso.id_for_label }}">Fecha de Ingreso</label>
             {{ form.fecha_ingreso }}
         </div>
         <div class="form-group">
-            {{ form.fecha_termino_contrata.label_tag }}
+            <label for="{{ form.fecha_termino_contrata.id_for_label }}">Fecha de Término de Contrato</label>
             {{ form.fecha_termino_contrata }}
         </div>
         <div class="form-group">
-            {{ form.anios_servicio.label_tag }}
+            <label for="{{ form.fecha_termino.id_for_label }}">Fecha de Término</label>
+            {{ form.fecha_termino }}
+        </div>
+
+        <!-- Campos relacionados con el trabajo -->
+        <div class="form-group">
+            <label for="{{ form.anios_servicio.id_for_label }}">Años de Servicio</label>
             {{ form.anios_servicio }}
         </div>
         <div class="form-group">
-            {{ form.grado.label_tag }}
+            <label for="{{ form.grado.id_for_label }}">Grado</label>
             {{ form.grado }}
         </div>
         <div class="form-group">
-            {{ form.condicion.label_tag }}
+            <label for="{{ form.condicion.id_for_label }}">Calidad Juridica</label>
             {{ form.condicion }}
         </div>
 
+        <!-- Tipo Honorario -->
         <div class="form-group" id="tipo_honorario_field" style="display: none;">
-            {{ form.tipo_honorario.label_tag }}
+            <label for="{{ form.tipo_honorario.id_for_label }}">Tipo de Honorario</label>
             {{ form.tipo_honorario }}
         </div>
 
+        <!-- Item Presupuestario y Cuenta Administración de Fondos -->
         <div class="form-group" id="item_presupuestario_field" style="display: none;">
-            <label for="id_item_presupuestario">Item Presupuestario</label>
-            <input type="text" id="id_item_presupuestario" name="item_presupuestario" class="form-control">
+            <label for="{{ form.item_presupuestario.id_for_label }}">Item Presupuestario</label>
+            {{ form.item_presupuestario }}
         </div>
-
         <div class="form-group" id="cta_administracion_fondos_field" style="display: none;">
-            <label for="id_cta_administracion_fondos">Cuenta Administración de Fondos</label>
-            <input type="text" id="id_cta_administracion_fondos" name="cta_administracion_fondos" class="form-control">
+            <label for="{{ form.cta_administracion_fondos.id_for_label }}">Cuenta de Administración de Fondos</label>
+            {{ form.cta_administracion_fondos }}
         </div>
 
+        <!-- Otros detalles -->
         <div class="form-group">
-            {{ form.situacion_discapacidad.label_tag }}
-            {{ form.situacion_discapacidad }}
-        </div>
-        <div class="form-group">
-            {{ form.etnia.label_tag }}
-            {{ form.etnia }}
-        </div>
-
-        <div class="form-group">
-            {{ form.escalon.label_tag }}
+            <label for="{{ form.escalon.id_for_label }}">Escalafon</label>
             {{ form.escalon }}
         </div>
         <div class="form-group">
-            {{ form.cargo.label_tag }}
+            <label for="{{ form.cargo.id_for_label }}">Cargo</label>
             {{ form.cargo }}
         </div>
         <div class="form-group">
-            {{ form.direccion_pertenencia.label_tag }}
+            <label for="{{ form.direccion_pertenencia.id_for_label }}">Dirección de Pertenencia</label>
             {{ form.direccion_pertenencia }}
         </div>
         <div class="form-group">
-            {{ form.titulo_profesional.label_tag }}
+            <label for="{{ form.jefatura.id_for_label }}">Jefatura</label>
+            {{ form.jefatura }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.titulo_profesional.id_for_label }}">Título Profesional</label>
             {{ form.titulo_profesional }}
         </div>
         <div class="form-group">
-            {{ form.situacion_actual.label_tag }}
+            <label for="{{ form.situacion_actual.id_for_label }}">Situación Actual</label>
             {{ form.situacion_actual }}
         </div>
         <div class="form-group">
-            {{ form.fecha_termino.label_tag }}
-            {{ form.fecha_termino }}
+            <label for="{{ form.situacion_discapacidad.id_for_label }}">Situación de Discapacidad</label>
+            {{ form.situacion_discapacidad }}
         </div>
         <div class="form-group">
-            {{ form.observaciones.label_tag }}
+            <label for="{{ form.etnia.id_for_label }}">Etnia</label>
+            {{ form.etnia }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.direccion.id_for_label }}">Dirección</label>
+            {{ form.direccion }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.observaciones.id_for_label }}">Observaciones</label>
             {{ form.observaciones }}
         </div>
-        
+
+
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
 
